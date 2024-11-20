@@ -1,25 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import { getConnectedGroups } from './utils/helper';
+import { useCallback, useEffect, useState } from 'react';
+// import Game from './components/game';
+import Game from './componets/game';
+import { Leva, useControls } from 'leva';
+// import styles from './styles.module.css';
+import styles from './style.module.css';
+const isSmallScreen = window.innerWidth <= 768;
 
-function App() {
+// Navbar Component
+const Navbar = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <nav className={styles.navbar}>
+      <div className={styles.navLogo}>Word Connector</div>
+    </nav>
   );
-}
+};
+
+const App = () => {
+  const { groupSize } = useControls({ groupSize: { value: 2, min: 2, max: 4, step: 1 } });
+  const { itemCount } = useControls({ itemCount: { value: 8, min: 4, max: 12, step: 1 } });
+  const { columns } = useControls({
+    columns: { value: 4, min: 2, max: 4, step: 1, disabled: isSmallScreen },
+  });
+
+  const [itemGroups, setItemsGroup] = useState([]);
+  const [allItems, setAllItems] = useState([]);
+
+  const reset = useCallback(() => {
+    const [newItemGroups, newAllItems] = getConnectedGroups(itemCount, groupSize);
+    setItemsGroup(newItemGroups);
+    setAllItems(newAllItems);
+  }, [setAllItems, itemCount, groupSize]);
+
+  useEffect(reset, [itemCount, groupSize, reset]);
+
+  return (
+    <>
+      {/* Navbar Section */}
+      <Navbar />
+
+      {/* Leva Controls */}
+      <Leva
+        collapsed
+        hideCopyButton={true}
+        titleBar={{ position: { x: 0, y: 40 }, filter: false, title: 'Config' }}
+        theme={{
+          colors: {
+            highlight1: 'white',
+            highlight2: 'white',
+          },
+        }}
+      />
+
+      {/* Main Game Content */}
+      <h3 className={styles.center}>
+        Connect group of {groupSize} words by clicking on related words
+      </h3>
+      <Game itemGroups={itemGroups} allItems={allItems} columns={columns} groupSize={groupSize} />
+      <div className={styles.center}>
+        <button className={styles.reset} onClick={reset}>
+          Reset
+        </button>
+      </div>
+    </>
+  );
+};
 
 export default App;
