@@ -10,7 +10,6 @@ function Game({ itemGroups, allItems, columns = 2, groupSize }) {
   const [status, setStatus] = useState(null);
   const gridUIRef = useRef(null);
 
-  // Reset the game whenever items change
   useEffect(() => {
     setItems(allItems);
     setAttempts(0);
@@ -18,7 +17,6 @@ function Game({ itemGroups, allItems, columns = 2, groupSize }) {
     gridUIRef.current?.clearSelection();
   }, [allItems]);
 
-  // Handle selection completion
   function onSelection(selected) {
     if (selected.length === groupSize) {
       setAttempts(attempts + 1);
@@ -32,7 +30,6 @@ function Game({ itemGroups, allItems, columns = 2, groupSize }) {
   }
 
   function unHighlight(itemsForRemoval, status) {
-    // Remove items if the selection was successful
     if (status === StatusOptions.Success) {
       setItems(items.filter((item) => !itemsForRemoval.includes(item)));
     }

@@ -60,7 +60,7 @@ body{
   [data-status] button {
     cursor: not-allowed;
   }
-  /* Navbar Container */
+
 .navbar {
   background-color:rgb(20, 212, 209);
   color:black;
@@ -74,14 +74,13 @@ body{
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Navbar Title */
 .navbarTitle {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
-/* Navbar Links */
+
 .navLinks {
   list-style: none;
   display: flex;
@@ -90,7 +89,7 @@ body{
   padding: 0;
 }
 
-/* Individual Links */
+
 .navLink {
   text-decoration: none;
   color: #fff;
@@ -99,10 +98,10 @@ body{
 }
 
 .navLink:hover {
-  color: #1db954; /* Accent color for hover effect */
+  color: #1db954;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -116,10 +115,10 @@ body{
   }
 }
 .navLogoContainer {
-  display: flex; /* Flexbox activate */
-  justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center (optional) */
-  height: 100%; /* Adjust based on navbar height */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100%; 
 }
 
 .navLogo {

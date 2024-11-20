@@ -3,8 +3,6 @@ import styles from '../style.module.css';
 
 const GridUI = forwardRef(function GridUI({ items, cols, onSelection, status }, ref) {
   const [selected, setSelected] = useState([]);
-
-  // Mark the selection and inform the parent
   const markSelection = (item) => {
     if (status) {
       return;
@@ -24,8 +22,6 @@ const GridUI = forwardRef(function GridUI({ items, cols, onSelection, status }, 
   function clearSelection() {
     setSelected([]);
   }
-
-  // Expose clearSelection method to the parent
   useImperativeHandle(ref, () => ({ clearSelection }));
 
   return (

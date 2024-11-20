@@ -22,8 +22,6 @@ export const shuffleArrayRandomly = (items) => {
   const n = items.length;
   for (let i = 0; i < n; i++) {
     const idx = Math.floor(Math.random() * (n - i));
-
-    // Swap values
     const temp = items[n - i - 1];
     items[n - i - 1] = items[idx];
     items[idx] = temp;

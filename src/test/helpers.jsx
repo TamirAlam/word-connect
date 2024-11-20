@@ -1,6 +1,4 @@
 import { getConnectedGroups } from './helpers';
-
-// Mock the module
 vi.mock('../utils/data', async () => {
   const { connectedWords } = await vi.importActual('../utils/data');
   return {

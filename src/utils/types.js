@@ -5,5 +5,5 @@ export const StatusOptions = {
 
 export const Status = {
   ...StatusOptions,
-  null: null, // Assuming you need null to be explicitly defined as part of Status.
+  null: null,
 };
